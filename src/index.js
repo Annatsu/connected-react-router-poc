@@ -8,7 +8,7 @@ WHEN USING <ConnectedRouter />
 
 *****************/
 
-// import { WithConnectedRouter as App } from './App'
-import { WithoutConnectedRouter as App } from './App'
+import { WithConnectedRouter as App } from './App'
+// import { WithoutConnectedRouter as App } from './App'
 
 ReactDOM.render(<App />, document.getElementById('root'))

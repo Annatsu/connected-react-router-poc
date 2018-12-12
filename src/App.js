@@ -1,28 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'connected-react-router'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
+import { store, history } from './redux/store'
+import { Nav, Home, About } from './components'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+const WithConnectedRouter = () => (
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <div>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+        </Switch>
       </div>
-    );
-  }
-}
+    </ConnectedRouter>
+  </Provider>
+)
 
-export default App;
+const WithoutConnectedRouter = () => (
+  <Provider store={store}>
+    <Router>
+      <div>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+        </Switch>
+      </div>
+    </Router>
+  </Provider>
+)
+
+export { WithConnectedRouter, WithoutConnectedRouter }
